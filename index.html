@@ -3,7 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <title>GoNex Innovations – Digital Innovation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#00C853" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="description" content="GoNex Innovations - Powerful digital solutions" />
 
   <!-- Fonts -->
@@ -490,13 +494,145 @@
       }
     }
 
+    /* Mobile Responsive Adjustments */
+    @media (max-width: 768px) {
+      /* Base adjustments */
+      body {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      /* Header adjustments */
+      .header {
+        padding: 15px 20px;
+      }
+
+      .header.scrolled {
+        padding: 12px 20px;
+      }
+
+      /* Hero section */
+      .hero-section {
+        padding-top: 80px;
+        height: auto;
+        min-height: 100vh;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+        line-height: 1.2;
+      }
+
+      /* About section */
+      .about-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 20px;
+      }
+
+      .about-media {
+        order: -1;
+        max-width: 100%;
+      }
+
+      .about-text {
+        text-align: center;
+      }
+
+      .about-title {
+        font-size: 1.8rem;
+      }
+
+      .about-subtitle {
+        font-size: 1.1rem;
+      }
+
+      /* Services section */
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 20px;
+      }
+
+      .service-card {
+        padding: 30px 20px;
+      }
+
+      .service-title {
+        font-size: 1.1rem;
+      }
+
+      /* Contact section */
+      .contact-layout {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .contact-card, 
+      .contact-form-wrap {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      /* Form adjustments */
+      .form-row {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      /* Footer */
+      .footer-top-inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer-section {
+        text-align: center;
+      }
+
+      .footer-list {
+        justify-content: center;
+      }
+
+      /* Ensure all buttons are touch-friendly */
+      button, 
+      .btn, 
+      .service-cta, 
+      input[type="submit"],
+      input[type="button"] {
+        min-height: 44px;
+        min-width: 44px;
+      }
+
+      /* Prevent zoom on input focus in iOS */
+      @supports (-webkit-touch-callout: none) {
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        select {
+          font-size: 16px !important;
+        }
+      }
+    }
+
+    /* Make images responsive */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Remove blue highlight on tap (mobile) */
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+
     /* ------------- SERVICES SECTION ------------- */
 
     .services-section {
       background: #ffffff;
       color: var(--text-main);
       padding: 70px 5vw 90px;
-      text-align: center;
     }
 
     .services-header {
@@ -1473,6 +1609,17 @@
     <div class="logo">
       <span class="logo-gonex">GoNex</span><span class="logo-innovations"> Innovations</span>
     </div>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span class="hamburger"></span>
+    </button>
+    <nav class="nav-links">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
     <nav class="nav-links">
       <a href="#home" class="active">Home</a>
       <a href="#about">About</a>
@@ -1559,7 +1706,7 @@
         <p class="service-text">
           End-to-end web applications with powerful backends and modern frontends.
         </p>
-        <button class="service-cta" type="button">Apply Now</button>
+        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
       </article>
 
       <!-- 2 -->
@@ -1571,7 +1718,7 @@
         <p class="service-text">
           Native &amp; cross-platform mobile apps with exceptional user experience.
         </p>
-        <button class="service-cta" type="button">Apply Now</button>
+        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
       </article>
 
       <!-- 3 -->
@@ -1583,7 +1730,7 @@
         <p class="service-text">
           Fast, accessible, and SEO-friendly websites optimized for conversions.
         </p>
-        <button class="service-cta" type="button">Apply Now</button>
+        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
       </article>
 
       <!-- 4 -->
@@ -1595,7 +1742,7 @@
         <p class="service-text">
           Scalable MERN applications and REST/GraphQL APIs built with modern best practices.
         </p>
-        <button class="service-cta" type="button">Apply Now</button>
+        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
       </article>
 
       <!-- 5 -->
@@ -1607,7 +1754,7 @@
         <p class="service-text">
           User-centered design &amp; interactive prototypes that delight users.
         </p>
-        <button class="service-cta" type="button">Apply Now</button>
+        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
       </article>
 
       <!-- 6 -->
@@ -1619,7 +1766,7 @@
         <p class="service-text">
           Compelling branding and marketing visuals that drive engagement.
         </p>
-        <button class="service-cta" type="button">Apply Now</button>
+        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
       </article>
 
       <!-- 7 -->
@@ -1631,7 +1778,7 @@
         <p class="service-text">
           Performance-driven strategies and analytics-powered growth campaigns.
         </p>
-        <button class="service-cta" type="button">Apply Now</button>
+        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
       </article>
 
       <!-- 8 -->
@@ -1643,7 +1790,7 @@
         <p class="service-text">
           Hands-on, practical courses designed to upskill students &amp; professionals.
         </p>
-        <button class="service-cta" type="button">Apply Now</button>
+        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
       </article>
     </div>
   </section>
@@ -1827,7 +1974,7 @@
     <div class="footer-bottom">
       <div class="footer-bottom-inner">
         <div class="footer-copy">
-          © 2025 <strong>GoNex Innovations</strong>. All rights reserved.
+          2025 <strong>GoNex Innovations</strong>. All rights reserved.
         </div>
         <div class="footer-designer">
           Designed by <span>GoNex Innovations</span>
@@ -2031,5 +2178,36 @@
     }
   </script>
 
+  <script>
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      
+      if (navToggle && navLinks) {
+        navToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          navLinks.classList.toggle('active');
+          this.classList.toggle('active');
+        });
+      }
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.nav-links') && !e.target.closest('.nav-toggle')) {
+          if (navLinks) navLinks.classList.remove('active');
+          if (navToggle) navToggle.classList.remove('active');
+        }
+      });
+
+      // Close menu when clicking a link
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks) navLinks.classList.remove('active');
+          if (navToggle) navToggle.classList.remove('active');
+        });
+      });
+    });
+  </script>
 </body>
 </html>
