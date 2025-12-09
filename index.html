@@ -1,0 +1,2036 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>GoNex Innovations – Digital Innovation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="GoNex Innovations - Powerful digital solutions" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <style>
+    :root {
+      /* Main brand colors */
+      --primary-green: #00C853;
+      --accent: #22c55e;
+      --accent-soft: rgba(34,197,94,0.08);
+
+      --dark-background: #0D0D0D;
+      --text-on-dark: #ffffff;
+      --text-color: #ffffff; /* used by hero/nav */
+
+      /* Light sections */
+      --bg: #ffffff;
+      --text-main: #111111;
+      --text-muted: #666666;
+      --border-soft: #e5e5e5;
+      --card-border: #eaeaea;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--dark-background);
+      color: var(--text-on-dark);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Make anchored sections scroll nicely below the fixed header */
+    section[id] {
+      scroll-margin-top: 100px;
+    }
+
+    /* ------------- HEADER / NAV ------------- */
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 80px;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      transition:
+        background-color 0.3s ease,
+        box-shadow 0.3s ease,
+        padding 0.3s ease,
+        transform 0.6s ease,
+        opacity 0.6s ease;
+      opacity: 0;
+      transform: translateY(-24px);
+      animation: navEnter 0.9s ease-out forwards 0.15s;
+    }
+
+    @keyframes navEnter {
+      from {
+        opacity: 0;
+        transform: translateY(-24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header.scrolled {
+      background-color: rgba(13, 13, 13, 0.95);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      padding: 18px 80px;
+      transform: translateY(0);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .logo-gonex {
+      color: var(--primary-green);
+    }
+
+    .logo-innovations {
+      color: var(--text-color);
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 30px;
+      font-size: 0.95rem;
+      padding-bottom: 5px;
+      position: relative;
+      transition:
+        color 0.3s ease,
+        transform 0.3s ease,
+        letter-spacing 0.3s ease,
+        opacity 0.3s ease;
+      opacity: 0.9;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-green);
+      transform: translateY(-1px);
+      letter-spacing: 0.06em;
+      opacity: 1;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      display: block;
+      margin-top: 5px;
+      right: 0;
+      background: var(--primary-green);
+      transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+      left: 0;
+      right: auto;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 18px 20px;
+      }
+
+      .header.scrolled {
+        padding: 14px 20px;
+      }
+
+      .nav-links a {
+        margin-left: 18px;
+        font-size: 0.85rem;
+      }
+    }
+
+    /* ------------- HERO SECTION (HOME) ------------- */
+
+    .hero-section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      background: radial-gradient(circle at center, #181818 0%, var(--dark-background) 80%);
+      padding: 0 20px;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      inset: -40px;
+      background:
+        radial-gradient(circle at top, rgba(0, 200, 83, 0.18), transparent 55%);
+      opacity: 0.6;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      animation: heroGlow 16s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes heroGlow {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.4;
+      }
+      50% {
+        transform: translate3d(0, -18px, 0) scale(1.05);
+        opacity: 0.75;
+      }
+      100% {
+        transform: translate3d(0, 10px, 0) scale(1.02);
+        opacity: 0.5;
+      }
+    }
+
+    .hero-content {
+      z-index: 2;
+      max-width: 900px;
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(40px) scale(0.98);
+      animation: heroContentEnter 1.1s cubic-bezier(0.19, 1, 0.22, 1) forwards 0.35s;
+    }
+
+    @keyframes heroContentEnter {
+      0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.96);
+      }
+      70% {
+        opacity: 1;
+        transform: translateY(0) scale(1.02);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      text-transform: uppercase;
+      color: var(--text-color);
+      opacity: 1;
+    }
+
+    .hero-line {
+      display: block;
+      opacity: 0;
+      transform: translateY(20px) translateZ(0);
+      animation: slideIn 0.8s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .hero-line:nth-child(2) {
+      margin-top: 10px;
+      font-size: 3rem;
+      animation-delay: 0.3s;
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+      }
+    }
+
+    .hero-highlight {
+      font-weight: 800;
+      color: var(--primary-green);
+      text-shadow: 0 0 5px rgba(0, 200, 83, 0.6);
+      letter-spacing: 1px;
+      animation:
+        textFlicker 3s infinite alternate,
+        highlightFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes textFlicker {
+      0% { opacity: 1; }
+      40% { opacity: 1; }
+      41% { opacity: 0.8; }
+      42% { opacity: 1; }
+      45% { opacity: 0.9; }
+      50% { opacity: 1; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes highlightFloat {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Particles */
+
+    .particle {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      background-color: var(--primary-green);
+      box-shadow: 0 0 2px var(--primary-green);
+      border-radius: 50%;
+      opacity: 0;
+      animation: glowFloat 40s infinite linear;
+      z-index: 0;
+    }
+
+    @keyframes glowFloat {
+      0% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+      5% { opacity: 0.5; }
+      50% {
+        transform: translate(var(--translate-x), var(--translate-y)) scale(1.0);
+        opacity: 0.1;
+      }
+      95% { opacity: 0.5; }
+      100% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+    }
+
+    .particle:nth-child(1) { top: 10%; left: 5%;  animation-delay: 0s;  --translate-x: 120px;  --translate-y: 100px; }
+    .particle:nth-child(2) { top: 50%; left: 80%; animation-delay: 4s;  --translate-x: -150px; --translate-y: 50px; }
+    .particle:nth-child(3) { top: 80%; left: 30%; animation-delay: 8s;  --translate-x: 50px;  --translate-y: -150px; }
+    .particle:nth-child(4) { top: 30%; left: 60%; animation-delay: 12s; --translate-x: -80px; --translate-y: 180px; }
+    .particle:nth-child(5) { top: 90%; left: 90%; animation-delay: 16s; --translate-x: -200px; --translate-y: -20px; }
+    .particle:nth-child(6) { top: 5%;  left: 40%; animation-delay: 20s; --translate-x: 90px;  --translate-y: -70px; }
+    .particle:nth-child(7) { top: 75%; left: 10%; animation-delay: 24s; --translate-x: 150px; --translate-y: -50px; }
+    .particle:nth-child(8) { top: 40%; left: 95%; animation-delay: 28s; --translate-x: -100px; --translate-y: 120px; }
+    .particle:nth-child(9) { top: 20%; left: 25%; animation-delay: 32s; --translate-x: 70px;  --translate-y: -100px; }
+    .particle:nth-child(10){ top: 65%; left: 50%; animation-delay: 36s; --translate-x: -180px; --translate-y: 40px; }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.4rem;
+      }
+      .hero-line:nth-child(2) {
+        font-size: 2rem;
+      }
+    }
+
+    /* ------------- ABOUT SECTION ------------- */
+
+    .about-section {
+      background: var(--bg);
+      color: var(--text-main);
+      padding: 60px 4vw 80px;
+    }
+
+    .about-layout {
+      max-width: 1200px;
+      width: 100%;
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.1fr);
+      align-items: center;
+      column-gap: 72px;
+    }
+
+    .about-text,
+    .about-media {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .about-text {
+      max-width: 580px;
+    }
+
+    .about-eyebrow {
+      display: inline-block;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #555555;
+      margin-bottom: 10px;
+    }
+
+    .about-title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
+    }
+
+    .about-subtitle {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 22px;
+    }
+
+    .about-text p {
+      font-family: 'Merriweather', Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 15px;
+      line-height: 1.9;
+      color: #555555;
+      margin-bottom: 10px;
+    }
+
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-media {
+      justify-self: end;
+      width: 100%;
+      max-width: 640px;
+    }
+
+    .about-media-inner {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.18);
+      transform-origin: center center;
+      transition: transform 0.9s ease, box-shadow 0.9s ease;
+    }
+
+    .about-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      vertical-align: middle;
+      transform: scale(1.02);
+      transition: transform 0.9s ease;
+    }
+
+    .about-media-inner:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.32);
+    }
+
+    .about-media-inner:hover img {
+      transform: scale(1.05);
+    }
+
+    @keyframes slideFadeLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideFadeRight {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .animate-in-left {
+      animation: slideFadeLeft 0.95s ease-out forwards;
+    }
+
+    .animate-in-right {
+      animation: slideFadeRight 0.95s ease-out forwards;
+      animation-delay: 0.15s;
+    }
+
+    @media (max-width: 960px) {
+      .about-section {
+        padding: 40px 18px 70px;
+      }
+
+      .about-layout {
+        grid-template-columns: 1fr;
+        row-gap: 38px;
+      }
+
+      .about-media {
+        justify-self: center;
+        order: -1;
+      }
+
+      .about-title {
+        font-size: 22px;
+      }
+
+      .about-subtitle {
+        font-size: 16px;
+      }
+
+      .about-text p {
+        font-size: 14px;
+      }
+    }
+
+    /* ------------- SERVICES SECTION ------------- */
+
+    .services-section {
+      background: #ffffff;
+      color: var(--text-main);
+      padding: 70px 5vw 90px;
+      text-align: center;
+    }
+
+    .services-header {
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .services-header.section-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .services-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .services-title {
+      font-size: 28px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .services-intro {
+      max-width: 620px;
+      margin: 0 auto;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+
+    .services-grid {
+      max-width: 1100px;
+      margin: 46px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 26px 32px;
+    }
+
+    .service-card {
+      position: relative;
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      padding: 46px 28px 34px;
+      text-align: center;
+      cursor: default;
+      overflow: hidden;
+      transition:
+        transform 0.55s cubic-bezier(0.19, 1, 0.22, 1),
+        box-shadow 0.55s cubic-bezier(0.19, 1, 0.22, 1),
+        border-color 0.45s ease,
+        background 0.45s ease;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+      opacity: 0;
+      transform: translateY(40px) scale(0.97);
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(34, 197, 94, 0.14), transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .service-card.in-view {
+      animation: cardEnter 0.75s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+      animation-delay: var(--delay, 0s);
+    }
+
+    .service-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.16);
+      border-color: rgba(0, 0, 0, 0.05);
+      background: linear-gradient(160deg, #ffffff 0%, #f8fff9 100%);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-icon-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      margin-bottom: 22px;
+      border-radius: 4px;
+      background: var(--accent);
+      box-shadow: 0 14px 22px rgba(34, 197, 94, 0.4);
+      transform: translateY(0);
+      transition:
+        transform 0.55s cubic-bezier(0.19, 1, 0.22, 1),
+        box-shadow 0.55s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .service-card:hover .service-icon-wrap {
+      transform: translateY(-4px) scale(1.03) rotate(-1.5deg);
+      box-shadow: 0 18px 30px rgba(34, 197, 94, 0.65);
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 500,
+        'GRAD' 0,
+        'opsz' 32;
+      font-size: 34px;
+      transition: transform 0.5s ease;
+    }
+
+    .service-card:hover .material-symbols-outlined {
+      transform: translateY(-2px) rotate(4deg) scale(1.05);
+    }
+
+    .service-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .service-text {
+      font-size: 13px;
+      line-height: 1.85;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      min-height: 56px;
+    }
+
+    .service-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      background: #ffffff;
+      color: var(--text-main);
+      transition:
+        background 0.4s ease,
+        color 0.4s ease,
+        border-color 0.4s ease,
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+    }
+
+    .service-card:hover .service-cta {
+      background: var(--accent);
+      border-color: transparent;
+      color: #111111;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(34, 197, 94, 0.4);
+    }
+
+    /* Dark strip after services */
+
+    .brand-strip {
+      margin-top: 70px;
+      padding: 34px 5vw;
+      background: radial-gradient(circle at top, #202020 0, #050505 45%, #000000 100%);
+      color: #f9fafb;
+      text-align: center;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 14px;
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .brand-strip.strip-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Testimonial / Founder */
+
+    .testimonial-section {
+      background: radial-gradient(circle at top, #151515 0, #050505 45%, #000 100%);
+      color: #f3f4f6;
+      padding: 60px 5vw 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+      transform: translateY(28px);
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .testimonial-inner.founder-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .testimonial-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin: 0 auto 26px;
+      box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.06);
+      animation: pulseDot 2.7s ease-out infinite;
+    }
+
+    .founder-brand {
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .testimonial-name {
+      font-size: 13px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .testimonial-role {
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-quote {
+      font-size: 14px;
+      line-height: 2;
+      max-width: 640px;
+      margin: 0 auto;
+      color: #e5e7eb;
+      position: relative;
+      padding-inline: 24px;
+    }
+
+    .testimonial-quote::before,
+    .testimonial-quote::after {
+      content: "“";
+      position: absolute;
+      font-size: 40px;
+      font-weight: 800;
+      color: rgba(249, 250, 251, 0.16);
+      top: -22px;
+    }
+
+    .testimonial-quote::before {
+      left: -4px;
+    }
+
+    .testimonial-quote::after {
+      content: "”";
+      right: 0;
+      bottom: -20px;
+      top: auto;
+    }
+
+    .testimonial-bokeh {
+      position: absolute;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.32), transparent 60%);
+      opacity: 0.35;
+      filter: blur(2px);
+      animation: floatBokeh 18s linear infinite;
+    }
+
+    .testimonial-bokeh.b1 {
+      width: 220px;
+      height: 220px;
+      left: -60px;
+      top: 20%;
+    }
+
+    .testimonial-bokeh.b2 {
+      width: 260px;
+      height: 260px;
+      right: -90px;
+      bottom: -40px;
+      animation-delay: 4s;
+    }
+
+    .founder-animate > * {
+      opacity: 0;
+      transform: translateY(25px);
+    }
+
+    .founder-animate.animate-in > * {
+      animation: founderFade 0.9s ease-out forwards;
+    }
+
+    .founder-animate.animate-in > *:nth-child(1) { animation-delay: 0.05s; }
+    .founder-animate.animate-in > *:nth-child(2) { animation-delay: 0.20s; }
+    .founder-animate.animate-in > *:nth-child(3) { animation-delay: 0.35s; }
+    .founder-animate.animate-in > *:nth-child(4) { animation-delay: 0.50s; }
+    .founder-animate.animate-in > *:nth-child(5) { animation-delay: 0.65s; }
+
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes pulseDot {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.25);
+      }
+      70% {
+        transform: scale(1.08);
+        box-shadow: 0 0 0 16px rgba(34, 197, 94, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+      }
+    }
+
+    @keyframes floatBokeh {
+      0% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-30px) translateX(10px); }
+      100% { transform: translateY(0) translateX(0); }
+    }
+
+    @keyframes founderFade {
+      0%   { opacity: 0; transform: translateY(25px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ------------- CONTACT SECTION + WEB3FORMS ------------- */
+
+    .contact-section {
+      background: #ffffff;
+      color: var(--text-main);
+      padding: 80px 6vw 100px;
+    }
+
+    .contact-header {
+      max-width: 960px;
+      margin: 0 auto 60px;
+      text-align: left;
+    }
+
+    .contact-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .contact-eyebrow::after {
+      content: "";
+      width: 80px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 999px;
+      opacity: 0.7;
+    }
+
+    .contact-title {
+      font-size: 30px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .contact-subtitle {
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--text-muted);
+      max-width: 640px;
+    }
+
+    .contact-layout {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, #ffffff 0, #fafafa 100%);
+      border-radius: 16px;
+      padding: 36px 34px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-soft);
+      opacity: 0;
+      transform: translateX(-35px);
+    }
+
+    .contact-card h3 {
+      font-size: 20px;
+      margin-bottom: 26px;
+      font-weight: 700;
+    }
+
+    .info-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 22px;
+    }
+
+    .info-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-soft);
+      color: var(--accent);
+      box-shadow: 0 10px 24px rgba(34,197,94,0.26);
+      transform: translateY(0);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .info-item:hover .info-icon {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px rgba(34,197,94,0.38);
+    }
+
+    .material-symbols-outlined.contact-icon {
+      font-size: 22px;
+    }
+
+    .info-label {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .info-text {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .info-highlight {
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 3px;
+      word-break: break-word;
+    }
+
+    .contact-socials {
+      margin-top: 18px;
+      font-size: 13px;
+    }
+
+    .contact-socials a {
+      margin-right: 18px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+      font-size: 13px;
+    }
+
+    .contact-socials a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    .contact-socials a:hover::after {
+      width: 100%;
+    }
+
+    .contact-form-wrap {
+      background: linear-gradient(135deg, #ffffff 0, #fbfbfb 100%);
+      border-radius: 18px;
+      padding: 36px 34px 32px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.06);
+      opacity: 0;
+      transform: translateX(35px);
+    }
+
+    .contact-form-title {
+      font-size: 20px;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+    }
+
+    .field {
+      position: relative;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 11px 14px;
+      font-family: inherit;
+      font-size: 13px;
+      border-radius: 8px;
+      border: 1px solid #e4e4e4;
+      background: #ffffff;
+      outline: none;
+      transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.18s ease,
+        background 0.25s ease;
+    }
+
+    .contact-form textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: #a3a3a3;
+      font-size: 12px;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(34,197,94,0.42);
+      transform: translateY(-1px);
+      background: #fcfffd;
+    }
+
+    .contact-submit {
+      margin-top: 8px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 26px;
+      border-radius: 999px;
+      border: none;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 20px 45px rgba(34,197,94,0.45);
+      transition:
+        background 0.3s ease,
+        transform 0.25s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .contact-btn:hover {
+      background: #16a34a;
+      transform: translateY(-2px);
+      box-shadow: 0 26px 55px rgba(34,197,94,0.55);
+    }
+
+    .contact-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 16px 32px rgba(34,197,94,0.42);
+    }
+
+    .contact-btn span {
+      margin-left: 6px;
+      font-size: 18px;
+      transition: transform 0.25s ease;
+    }
+
+    .contact-btn:hover span {
+      transform: translateX(2px) translateY(-1px);
+    }
+
+    .form-success {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--accent);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .form-success.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .animate-header {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .animate-header.ready {
+      animation: fadeUp 0.7s ease-out forwards;
+    }
+
+    .contact-card.animate-in {
+      animation: slideInLeft 0.8s ease-out forwards;
+    }
+
+    .contact-form-wrap.animate-in {
+      animation: slideInRight 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-35px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(35px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @media (max-width: 960px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-card,
+      .contact-form-wrap {
+        transform: translateY(40px);
+      }
+
+      .contact-card.animate-in,
+      .contact-form-wrap.animate-in {
+        animation: fadeUp 0.75s ease-out forwards;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .contact-section {
+        padding: 64px 18px 88px;
+      }
+
+      .contact-title {
+        font-size: 26px;
+      }
+
+      .contact-card,
+      .contact-form-wrap {
+        padding: 26px 22px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ------------- FOOTER ------------- */
+
+    footer {
+      margin-top: 40px;
+      background: #020202;
+      color: var(--text-main);
+      font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .footer-top {
+      background: #151515;
+      padding: 44px 6vw 32px;
+      border-top: 1px solid #1f2933;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .footer-top-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr) minmax(0, 0.9fr);
+      gap: 34px;
+    }
+
+    .footer-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .footer-title span.brand-main {
+      color: var(--accent);
+    }
+
+    .footer-title span.brand-sub {
+      color: #ffffff;
+    }
+
+    .footer-section h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: #f9fafb;
+    }
+
+    .footer-brand-tagline {
+      font-size: 13px;
+      color: #a1a1aa;
+      margin-bottom: 10px;
+    }
+
+    .footer-info-line {
+      font-size: 13px;
+      color: #a1a1aa;
+      margin-bottom: 6px;
+    }
+
+    .footer-info-line span.label {
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .footer-info-line span.value {
+      color: #d4d4d8;
+    }
+
+    .footer-list {
+      list-style: none;
+      font-size: 13px;
+      color: #a1a1aa;
+    }
+
+    .footer-list li {
+      margin-bottom: 6px;
+      position: relative;
+      padding-left: 16px;
+      cursor: pointer;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    .footer-list li::before {
+      content: "›";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      font-weight: 600;
+      transition: transform 0.25s ease;
+    }
+
+    .footer-list a {
+      color: inherit;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .footer-list a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .footer-list li:hover {
+      color: #e5e7eb;
+      transform: translateX(2px);
+    }
+
+    .footer-list li:hover::before {
+      transform: translateX(2px);
+    }
+
+    .footer-list li:hover a::after {
+      width: 100%;
+    }
+
+    .footer-bottom {
+      background: #000000;
+      padding: 16px 6vw 18px;
+      border-top: 1px solid #101827;
+    }
+
+    .footer-bottom-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #a1a1aa;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom-inner strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .footer-designer span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .footer-top.animate-in {
+      animation: footerFadeUp 0.9s ease-out forwards;
+    }
+
+    @keyframes footerFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .footer-top-inner {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .footer-top-inner {
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+
+      .footer-top {
+        padding: 32px 18px 24px;
+      }
+
+      .footer-bottom {
+        padding: 14px 18px 16px;
+      }
+
+      .footer-bottom-inner {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+    /* ------------- GLOBAL SCROLL-TO-TOP BUTTON ------------- */
+
+    .scroll-top-btn {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.35);
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 20;
+      color: #ffffff;
+    }
+
+    .scroll-top-btn.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.45);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="mainHeader">
+    <div class="logo">
+      <span class="logo-gonex">GoNex</span><span class="logo-innovations"> Innovations</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO / HOME -->
+  <section class="hero-section" id="home">
+    <!-- particles -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <span class="hero-line">Digital Innovation</span>
+        <span class="hero-line">Powered By <span class="hero-highlight">GoNex Innovations</span></span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="about-layout">
+      <article class="about-text">
+        <span class="about-eyebrow">About Us</span>
+        <h1 class="about-title">GoNex Innovations Team</h1>
+        <h2 class="about-subtitle">Your Trusted Partner for Innovative Solutions</h2>
+
+        <p>
+          Your trusted partner for innovative software solutions tailored to meet diverse
+          business needs. Based in Tamil Nadu, we specialize in delivering top-notch
+          services that empower businesses and individuals to thrive in the digital age.
+        </p>
+        <p>
+          We believe in the power of technology to transform businesses and streamline
+          operations. Our team combines cutting-edge expertise with strategic thinking to
+          deliver solutions that drive measurable results.
+        </p>
+        <p>
+          At GoNex Innovations, we focus on dependable engineering, strong UX, and modern
+          tools that accelerate growth. We help businesses go digital with confident
+          strategies so they stay ahead of the competition.
+        </p>
+      </article>
+
+      <div class="about-media">
+        <div class="about-media-inner">
+          <img
+            src="https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="GoNex Innovations office workspace"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="services-header" id="servicesHeader">
+      <div class="services-eyebrow">Services</div>
+      <h2 class="services-title">Check Our Services</h2>
+      <p class="services-intro">
+        Comprehensive digital solutions designed to elevate your business to the next level.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <!-- 1 -->
+      <article class="service-card" style="--delay: 0.02s">
+        <div class="service-icon-wrap">
+          <span class="material-symbols-outlined">terminal</span>
+        </div>
+        <h3 class="service-title">FullStack Development</h3>
+        <p class="service-text">
+          End-to-end web applications with powerful backends and modern frontends.
+        </p>
+        <button class="service-cta" type="button">Apply Now</button>
+      </article>
+
+      <!-- 2 -->
+      <article class="service-card" style="--delay: 0.08s">
+        <div class="service-icon-wrap">
+          <span class="material-symbols-outlined">smartphone</span>
+        </div>
+        <h3 class="service-title">App Development</h3>
+        <p class="service-text">
+          Native &amp; cross-platform mobile apps with exceptional user experience.
+        </p>
+        <button class="service-cta" type="button">Apply Now</button>
+      </article>
+
+      <!-- 3 -->
+      <article class="service-card" style="--delay: 0.14s">
+        <div class="service-icon-wrap">
+          <span class="material-symbols-outlined">language</span>
+        </div>
+        <h3 class="service-title">Web Development</h3>
+        <p class="service-text">
+          Fast, accessible, and SEO-friendly websites optimized for conversions.
+        </p>
+        <button class="service-cta" type="button">Apply Now</button>
+      </article>
+
+      <!-- 4 -->
+      <article class="service-card" style="--delay: 0.20s">
+        <div class="service-icon-wrap">
+          <span class="material-symbols-outlined">layers</span>
+        </div>
+        <h3 class="service-title">MERN Stack</h3>
+        <p class="service-text">
+          Scalable MERN applications and REST/GraphQL APIs built with modern best practices.
+        </p>
+        <button class="service-cta" type="button">Apply Now</button>
+      </article>
+
+      <!-- 5 -->
+      <article class="service-card" style="--delay: 0.26s">
+        <div class="service-icon-wrap">
+          <span class="material-symbols-outlined">dashboard_customize</span>
+        </div>
+        <h3 class="service-title">UI/UX Design</h3>
+        <p class="service-text">
+          User-centered design &amp; interactive prototypes that delight users.
+        </p>
+        <button class="service-cta" type="button">Apply Now</button>
+      </article>
+
+      <!-- 6 -->
+      <article class="service-card" style="--delay: 0.32s">
+        <div class="service-icon-wrap">
+          <span class="material-symbols-outlined">brush</span>
+        </div>
+        <h3 class="service-title">Graphic Design</h3>
+        <p class="service-text">
+          Compelling branding and marketing visuals that drive engagement.
+        </p>
+        <button class="service-cta" type="button">Apply Now</button>
+      </article>
+
+      <!-- 7 -->
+      <article class="service-card" style="--delay: 0.38s">
+        <div class="service-icon-wrap">
+          <span class="material-symbols-outlined">campaign</span>
+        </div>
+        <h3 class="service-title">Digital Marketing</h3>
+        <p class="service-text">
+          Performance-driven strategies and analytics-powered growth campaigns.
+        </p>
+        <button class="service-cta" type="button">Apply Now</button>
+      </article>
+
+      <!-- 8 -->
+      <article class="service-card" style="--delay: 0.44s">
+        <div class="service-icon-wrap">
+          <span class="material-symbols-outlined">school</span>
+        </div>
+        <h3 class="service-title">Value-Added Courses</h3>
+        <p class="service-text">
+          Hands-on, practical courses designed to upskill students &amp; professionals.
+        </p>
+        <button class="service-cta" type="button">Apply Now</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- DARK STRIP -->
+  <section class="brand-strip" id="brandStrip">
+    GoNex Innovations
+  </section>
+
+  <!-- TESTIMONIAL / FOUNDER -->
+  <section class="testimonial-section">
+    <div class="testimonial-bokeh b1"></div>
+    <div class="testimonial-bokeh b2"></div>
+
+    <div class="testimonial-inner founder-animate" id="testimonialInner">
+      <div class="testimonial-dot"></div>
+      <h3 class="founder-brand">GoNex Innovations</h3>
+      <div class="testimonial-name">Kishore</div>
+      <div class="testimonial-role">CEO &amp; Founder</div>
+      <p class="testimonial-quote">
+        An ever-curious soul navigating the intersection of creativity and technology.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT (with Web3Forms) -->
+  <section class="contact-section" id="contact">
+    <!-- HEADER -->
+    <header class="contact-header animate-header" id="contactHeader">
+      <div class="contact-eyebrow">Contact</div>
+      <h1 class="contact-title">Contact Us</h1>
+      <p class="contact-subtitle">
+        We’d love to hear from you. Reach out for projects, partnerships, or any tech ideas
+        you’d like to bring to life with GoNex Innovations.
+      </p>
+    </header>
+
+    <!-- LAYOUT -->
+    <div class="contact-layout">
+      <!-- LEFT: INFO CARD -->
+      <aside class="contact-card" id="contactInfo">
+        <h3>Contact Information</h3>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <span class="material-symbols-outlined contact-icon">location_on</span>
+          </div>
+          <div>
+            <div class="info-label">Location</div>
+            <div class="info-text">Tirupur, Tamil Nadu</div>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <span class="material-symbols-outlined contact-icon">mail</span>
+          </div>
+          <div>
+            <div class="info-label">Email</div>
+            <div class="info-highlight">gonexinnovationsit@gmail.com</div>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <span class="material-symbols-outlined contact-icon">call</span>
+          </div>
+          <div>
+            <div class="info-label">Call</div>
+            <div class="info-highlight">+91 93633 75306</div>
+          </div>
+        </div>
+
+        <div class="contact-socials">
+          <span class="info-label" style="display:block;margin-bottom:6px;">Social</span>
+          <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="#" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </aside>
+
+      <!-- RIGHT: FORM (WEB3FORMS ACTION) -->
+      <section class="contact-form-wrap" id="contactFormWrap">
+        <h3 class="contact-form-title">Send us a Message</h3>
+
+        <!-- Web3Forms integrated form -->
+        <form
+          id="contactForm"
+          class="contact-form"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+        >
+          <!-- REQUIRED Web3Forms ACCESS KEY -->
+          <input type="hidden" name="access_key" value="c4150a6f-dae2-4e21-8b7d-f15d7cee7496" />
+
+          <div class="form-row">
+            <div class="field">
+              <input type="text" name="name" placeholder="Your Full Name" required />
+            </div>
+            <div class="field">
+              <input type="email" name="email" placeholder="Your Email Address" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <input type="text" name="subject" placeholder="Subject" required />
+          </div>
+
+          <div class="field">
+            <textarea name="message" placeholder="Your Message..." required></textarea>
+          </div>
+
+          <div class="contact-submit">
+            <button class="contact-btn" type="submit">
+              Send Message
+              <span>↗</span>
+            </button>
+          </div>
+
+          <!-- Optional local success text (will only show if you add JS logic later) -->
+          <div class="form-success" id="formSuccess">
+            Thank you! Your message has been recorded.
+          </div>
+        </form>
+      </section>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-top" id="footerTop">
+      <div class="footer-top-inner">
+        <!-- Brand / contact -->
+        <div class="footer-section">
+          <div class="footer-title">
+            <span class="brand-main">GoNex</span><span class="brand-sub"> Innovations</span>
+          </div>
+          <p class="footer-brand-tagline">
+            Digital innovations powered by GoNex – crafting modern solutions for businesses that want to move faster.
+          </p>
+
+          <p class="footer-info-line">
+            <span class="label">Location:&nbsp;</span>
+            <span class="value">Tirupur, Tamil Nadu</span>
+          </p>
+          <p class="footer-info-line">
+            <span class="label">Phone:&nbsp;</span>
+            <span class="value">+91 93633 75306</span>
+          </p>
+          <p class="footer-info-line">
+            <span class="label">Email:&nbsp;</span>
+            <span class="value">gonexinnovationsit@gmail.com</span>
+          </p>
+        </div>
+
+        <!-- Services column -->
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul class="footer-list">
+            <li><a href="#services">FullStack Development</a></li>
+            <li><a href="#services">App Development</a></li>
+            <li><a href="#services">Web Development</a></li>
+            <li><a href="#services">MERN Stack</a></li>
+            <li><a href="#services">UI/UX Design</a></li>
+          </ul>
+        </div>
+
+        <!-- Quick links column -->
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom strip -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <div class="footer-copy">
+          © 2025 <strong>GoNex Innovations</strong>. All rights reserved.
+        </div>
+        <div class="footer-designer">
+          Designed by <span>GoNex Innovations</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GLOBAL SCROLL TO TOP BUTTON -->
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+
+  <script>
+    // HEADER SCROLL SHADOW
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      if (!header) return;
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // NAV ACTIVE STATE ON SCROLL
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    const sections = Array.from(navLinks).map(link => document.querySelector(link.getAttribute('href')));
+
+    function updateActiveNav() {
+      let currentId = 'home';
+      const offset = 120;
+      sections.forEach(section => {
+        if (!section) return;
+        const rect = section.getBoundingClientRect();
+        if (rect.top - offset <= 0) {
+          currentId = section.id;
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav);
+    window.addEventListener('load', updateActiveNav);
+
+    // ABOUT ENTRY ANIMATIONS
+    window.addEventListener('load', function () {
+      const text = document.querySelector('.about-text');
+      const media = document.querySelector('.about-media');
+      if (text) text.classList.add('animate-in-left');
+      if (media) media.classList.add('animate-in-right');
+    });
+
+    // SERVICES HEADER REVEAL
+    const servicesHeader = document.getElementById('servicesHeader');
+    if (servicesHeader) {
+      const servicesHeaderObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              servicesHeader.classList.add('section-visible');
+              servicesHeaderObserver.unobserve(servicesHeader);
+            }
+          });
+        },
+        { threshold: 0.25 }
+      );
+      servicesHeaderObserver.observe(servicesHeader);
+    }
+
+    // SERVICES - ANIMATE CARDS ON SCROLL
+    const cards = document.querySelectorAll('.service-card');
+    if (cards.length > 0) {
+      const cardObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              cardObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.18 }
+      );
+      cards.forEach((c) => cardObserver.observe(c));
+    }
+
+    // BRAND STRIP REVEAL
+    const brandStrip = document.getElementById('brandStrip');
+    if (brandStrip) {
+      const stripObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              brandStrip.classList.add('strip-visible');
+              stripObserver.unobserve(brandStrip);
+            }
+          });
+        },
+        { threshold: 0.25 }
+      );
+      stripObserver.observe(brandStrip);
+    }
+
+    // FOUNDER SECTION ANIMATION
+    const founder = document.querySelector('.founder-animate');
+    const testimonialInner = document.getElementById('testimonialInner');
+    if (founder && testimonialInner) {
+      const founderObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              founder.classList.add('animate-in');
+              testimonialInner.classList.add('founder-visible');
+              founderObserver.unobserve(founder);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      founderObserver.observe(founder);
+    }
+
+    // CONTACT HEADER ANIMATION ON LOAD
+    window.addEventListener('load', function () {
+      const headerEl = document.getElementById('contactHeader');
+      if (headerEl) {
+        headerEl.classList.add('ready');
+      }
+    });
+
+    // CONTACT LEFT/RIGHT SECTION OBSERVER
+    const contactInfo = document.getElementById('contactInfo');
+    const contactFormWrap = document.getElementById('contactFormWrap');
+
+    const contactObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            contactObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (contactInfo) contactObserver.observe(contactInfo);
+    if (contactFormWrap) contactObserver.observe(contactFormWrap);
+
+    // OPTIONAL LOCAL SUCCESS MESSAGE (only if you want to prevent redirect and handle via JS)
+    // Currently commented out so Web3Forms works with normal submit & redirect.
+    /*
+    const form = document.getElementById('contactForm');
+    const successMsg = document.getElementById('formSuccess');
+
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const data = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: data
+        }).then(() => {
+          if (successMsg) {
+            successMsg.classList.add('show');
+          }
+          form.reset();
+        });
+      });
+    }
+    */
+
+    // FOOTER REVEAL ANIMATION
+    const footerTop = document.getElementById('footerTop');
+    if (footerTop) {
+      const footerObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              footerTop.classList.add('animate-in');
+              footerObserver.unobserve(footerTop);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      footerObserver.observe(footerTop);
+    }
+
+    // SCROLL TO TOP BUTTON
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (!scrollBtn) return;
+      if (window.scrollY > 200) {
+        scrollBtn.classList.add('show');
+      } else {
+        scrollBtn.classList.remove('show');
+      }
+    });
+
+    if (scrollBtn) {
+      scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  </script>
+
+</body>
+</html>
