@@ -3,17 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <title>GoNex Innovations – Digital Innovation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <meta name="theme-color" content="#00C853" />
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="GoNex Innovations - Powerful digital solutions" />
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
-  <!-- Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
   <style>
@@ -52,12 +46,84 @@
       color: var(--text-on-dark);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      /* Base opacity for animation control */
+      opacity: 0; 
+    }
+    
+    body.loading {
+      overflow: hidden; /* Prevent scrolling during load */
+    }
+
+    body.loaded {
+      overflow-y: auto;
+      opacity: 1; /* Fade in all content */
+      transition: opacity 0.8s ease-out;
     }
 
     /* Make anchored sections scroll nicely below the fixed header */
     section[id] {
       scroll-margin-top: 100px;
     }
+    
+    /* --- ENHANCED PRELOADER STYLES --- */
+
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--dark-background);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.6s cubic-bezier(0.77, 0, 0.175, 1), visibility 0.6s ease;
+    }
+
+    #preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-svg {
+        width: 80px;
+        height: 80px;
+    }
+
+    .loader-svg circle {
+        fill: none;
+        stroke: var(--primary-green);
+        stroke-width: 4;
+        stroke-linecap: round;
+        transform-origin: center;
+        animation: 
+            dash 1.5s ease-in-out infinite,
+            colorChange 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes dash {
+        0% {
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+        }
+        50% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -35px;
+        }
+        100% {
+            stroke-dasharray: 89, 200;
+            stroke-dashoffset: -124px;
+        }
+    }
+    
+    @keyframes colorChange {
+        0% { stroke: #00C853; }
+        50% { stroke: #22c55e; }
+        100% { stroke: #00C853; }
+    }
+
 
     /* ------------- HEADER / NAV ------------- */
 
@@ -103,6 +169,12 @@
     .logo {
       font-size: 1.5rem;
       font-weight: 700;
+      cursor: pointer; /* Added for clickability */
+      transition: transform 0.2s ease-out;
+    }
+    
+    .logo:active {
+        transform: scale(0.98);
     }
 
     .logo-gonex {
@@ -156,20 +228,6 @@
       right: auto;
     }
 
-    @media (max-width: 768px) {
-      .header {
-        padding: 18px 20px;
-      }
-
-      .header.scrolled {
-        padding: 14px 20px;
-      }
-
-      .nav-links a {
-        margin-left: 18px;
-        font-size: 0.85rem;
-      }
-    }
 
     /* ------------- HERO SECTION (HOME) ------------- */
 
@@ -328,15 +386,7 @@
     .particle:nth-child(9) { top: 20%; left: 25%; animation-delay: 32s; --translate-x: 70px;  --translate-y: -100px; }
     .particle:nth-child(10){ top: 65%; left: 50%; animation-delay: 36s; --translate-x: -180px; --translate-y: 40px; }
 
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2.4rem;
-      }
-      .hero-line:nth-child(2) {
-        font-size: 2rem;
-      }
-    }
-
+    
     /* ------------- ABOUT SECTION ------------- */
 
     .about-section {
@@ -363,6 +413,11 @@
 
     .about-text {
       max-width: 580px;
+    }
+    
+    /* Global Line Animation/Transition for Text Links/Areas */
+    .about-text p, .footer-info-line, .info-text, .info-highlight {
+        transition: transform 0.2s ease, color 0.2s ease;
     }
 
     .about-eyebrow {
@@ -395,6 +450,11 @@
       line-height: 1.9;
       color: #555555;
       margin-bottom: 10px;
+    }
+    
+    .about-text p:hover {
+        transform: translateX(4px);
+        color: var(--text-main);
     }
 
     .about-text p:last-child {
@@ -466,173 +526,14 @@
       animation-delay: 0.15s;
     }
 
-    @media (max-width: 960px) {
-      .about-section {
-        padding: 40px 18px 70px;
-      }
-
-      .about-layout {
-        grid-template-columns: 1fr;
-        row-gap: 38px;
-      }
-
-      .about-media {
-        justify-self: center;
-        order: -1;
-      }
-
-      .about-title {
-        font-size: 22px;
-      }
-
-      .about-subtitle {
-        font-size: 16px;
-      }
-
-      .about-text p {
-        font-size: 14px;
-      }
-    }
-
-    /* Mobile Responsive Adjustments */
-    @media (max-width: 768px) {
-      /* Base adjustments */
-      body {
-        font-size: 16px;
-        line-height: 1.5;
-      }
-
-      /* Header adjustments */
-      .header {
-        padding: 15px 20px;
-      }
-
-      .header.scrolled {
-        padding: 12px 20px;
-      }
-
-      /* Hero section */
-      .hero-section {
-        padding-top: 80px;
-        height: auto;
-        min-height: 100vh;
-      }
-
-      .hero-title {
-        font-size: 2rem;
-        line-height: 1.2;
-      }
-
-      /* About section */
-      .about-layout {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding: 0 20px;
-      }
-
-      .about-media {
-        order: -1;
-        max-width: 100%;
-      }
-
-      .about-text {
-        text-align: center;
-      }
-
-      .about-title {
-        font-size: 1.8rem;
-      }
-
-      .about-subtitle {
-        font-size: 1.1rem;
-      }
-
-      /* Services section */
-      .services-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding: 0 20px;
-      }
-
-      .service-card {
-        padding: 30px 20px;
-      }
-
-      .service-title {
-        font-size: 1.1rem;
-      }
-
-      /* Contact section */
-      .contact-layout {
-        flex-direction: column;
-        gap: 30px;
-      }
-
-      .contact-card, 
-      .contact-form-wrap {
-        width: 100%;
-        max-width: 100%;
-      }
-
-      /* Form adjustments */
-      .form-row {
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      /* Footer */
-      .footer-top-inner {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-
-      .footer-section {
-        text-align: center;
-      }
-
-      .footer-list {
-        justify-content: center;
-      }
-
-      /* Ensure all buttons are touch-friendly */
-      button, 
-      .btn, 
-      .service-cta, 
-      input[type="submit"],
-      input[type="button"] {
-        min-height: 44px;
-        min-width: 44px;
-      }
-
-      /* Prevent zoom on input focus in iOS */
-      @supports (-webkit-touch-callout: none) {
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        textarea,
-        select {
-          font-size: 16px !important;
-        }
-      }
-    }
-
-    /* Make images responsive */
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    /* Remove blue highlight on tap (mobile) */
-    * {
-      -webkit-tap-highlight-color: transparent;
-    }
-
+    
     /* ------------- SERVICES SECTION ------------- */
 
     .services-section {
       background: #ffffff;
       color: var(--text-main);
       padding: 70px 5vw 90px;
+      text-align: center;
     }
 
     .services-header {
@@ -792,8 +693,13 @@
         background 0.4s ease,
         color 0.4s ease,
         border-color 0.4s ease,
-        transform 0.4s ease,
+        transform 0.2s ease,
         box-shadow 0.4s ease;
+    }
+    
+    .service-cta:active {
+        transform: scale(0.95);
+        box-shadow: 0 6px 15px rgba(34, 197, 94, 0.3);
     }
 
     .service-card:hover .service-cta {
@@ -895,6 +801,11 @@
       color: #e5e7eb;
       position: relative;
       padding-inline: 24px;
+      transition: transform 0.3s ease;
+    }
+    
+    .testimonial-quote:hover {
+        transform: scale(1.01);
     }
 
     .testimonial-quote::before,
@@ -1063,7 +974,7 @@
       opacity: 0;
       transform: translateX(-35px);
     }
-
+    
     .contact-card h3 {
       font-size: 20px;
       margin-bottom: 26px;
@@ -1076,6 +987,11 @@
       gap: 14px;
       align-items: flex-start;
       margin-bottom: 22px;
+      cursor: pointer;
+    }
+
+    .info-item:active {
+        transform: translateY(1px); /* Slight press down */
     }
 
     .info-icon {
@@ -1087,14 +1003,15 @@
       justify-content: center;
       background: var(--accent-soft);
       color: var(--accent);
-      box-shadow: 0 10px 24px rgba(34,197,94,0.26);
+      box-shadow: 0 14px 28px rgba(34,197,94,0.26);
       transform: translateY(0);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
     }
 
     .info-item:hover .info-icon {
       transform: translateY(-3px);
-      box-shadow: 0 16px 30px rgba(34,197,94,0.38);
+      box-shadow: 0 18px 36px rgba(34,197,94,0.38);
+      background: rgba(34,197,94,0.15); /* Subtle change on hover */
     }
 
     .material-symbols-outlined.contact-icon {
@@ -1118,6 +1035,11 @@
       font-weight: 600;
       margin-top: 3px;
       word-break: break-word;
+    }
+    
+    .info-highlight:hover {
+        transform: translateX(2px);
+        color: var(--primary-green);
     }
 
     .contact-socials {
@@ -1159,6 +1081,7 @@
       box-shadow: 0 22px 50px rgba(0,0,0,0.06);
       opacity: 0;
       transform: translateX(35px);
+      transition: box-shadow 0.2s ease-in-out; /* For JS highlight */
     }
 
     .contact-form-title {
@@ -1197,6 +1120,11 @@
         box-shadow 0.25s ease,
         transform 0.18s ease,
         background 0.25s ease;
+    }
+
+    .contact-form input:active,
+    .contact-form textarea:active {
+        transform: scale(0.99); /* Press down effect on touch */
     }
 
     .contact-form textarea {
@@ -1330,41 +1258,6 @@
       }
     }
 
-    @media (max-width: 960px) {
-      .contact-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-card,
-      .contact-form-wrap {
-        transform: translateY(40px);
-      }
-
-      .contact-card.animate-in,
-      .contact-form-wrap.animate-in {
-        animation: fadeUp 0.75s ease-out forwards;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .contact-section {
-        padding: 64px 18px 88px;
-      }
-
-      .contact-title {
-        font-size: 26px;
-      }
-
-      .contact-card,
-      .contact-form-wrap {
-        padding: 26px 22px;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-    }
-
     /* ------------- FOOTER ------------- */
 
     footer {
@@ -1428,6 +1321,12 @@
       font-size: 13px;
       color: #a1a1aa;
       margin-bottom: 6px;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+    
+    .footer-info-line:hover {
+        transform: translateX(4px);
+        color: #e5e7eb;
     }
 
     .footer-info-line span.label {
@@ -1484,6 +1383,10 @@
       color: #e5e7eb;
       transform: translateX(2px);
     }
+    
+    .footer-list li:active {
+        transform: translateX(1px) scale(0.99);
+    }
 
     .footer-list li:hover::before {
       transform: translateX(2px);
@@ -1519,6 +1422,11 @@
     .footer-designer span {
       color: var(--accent);
       font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-designer:hover span {
+        color: var(--primary-green);
     }
 
     .footer-top.animate-in {
@@ -1533,32 +1441,6 @@
       to {
         opacity: 1;
         transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 900px) {
-      .footer-top-inner {
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      }
-    }
-
-    @media (max-width: 720px) {
-      .footer-top-inner {
-        grid-template-columns: 1fr;
-        gap: 26px;
-      }
-
-      .footer-top {
-        padding: 32px 18px 24px;
-      }
-
-      .footer-bottom {
-        padding: 14px 18px 16px;
-      }
-
-      .footer-bottom-inner {
-        justify-content: center;
-        text-align: center;
       }
     }
 
@@ -1600,26 +1482,185 @@
       transform: translateY(-3px);
       box-shadow: 0 18px 30px rgba(0, 0, 0, 0.45);
     }
+    
+    .scroll-top-btn:active {
+        transform: translateY(-1px) scale(0.95);
+    }
+
+    /* --- RESPONSIVENESS: MEDIA QUERIES --- */
+
+    @media (max-width: 1024px) {
+      .header {
+        padding: 20px 40px;
+      }
+
+      .header.scrolled {
+        padding: 16px 40px;
+      }
+
+      .nav-links a {
+        margin-left: 20px;
+      }
+      
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        max-width: 760px;
+      }
+      
+      .contact-section {
+          padding-inline: 4vw;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .about-section {
+        padding: 40px 18px 70px;
+      }
+
+      .about-layout {
+        grid-template-columns: 1fr;
+        row-gap: 38px;
+      }
+
+      .about-media {
+        justify-self: center;
+        order: -1;
+      }
+
+      .about-media img {
+          max-height: 320px;
+      }
+
+      .about-title {
+        font-size: 22px;
+      }
+
+      .about-subtitle {
+        font-size: 16px;
+      }
+
+      .about-text p {
+        font-size: 14px;
+      }
+      
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-card,
+      .contact-form-wrap {
+        transform: translateY(40px);
+      }
+
+      .contact-card.animate-in,
+      .contact-form-wrap.animate-in {
+        animation: fadeUp 0.75s ease-out forwards;
+      }
+      
+      .footer-top-inner {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 18px 20px;
+      }
+
+      .header.scrolled {
+        padding: 14px 20px;
+      }
+
+      .nav-links {
+        display: none; /* Hide nav links on smaller mobiles */
+      }
+
+      .logo {
+          font-size: 1.25rem;
+      }
+      
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      
+      .hero-line:nth-child(2) {
+        font-size: 1.8rem;
+      }
+      
+      .footer-top-inner {
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+
+      .footer-top {
+        padding: 32px 18px 24px;
+      }
+
+      .footer-bottom {
+        padding: 14px 18px 16px;
+      }
+
+      .footer-bottom-inner {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+        .services-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding-inline: 18px;
+        }
+        .services-section {
+            padding-inline: 2vw;
+        }
+        .services-title {
+            font-size: 24px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-title {
+            font-size: 1.8rem;
+        }
+        .hero-line:nth-child(2) {
+            font-size: 1.6rem;
+            margin-top: 5px;
+        }
+        
+        .contact-section {
+          padding: 64px 18px 88px;
+        }
+
+        .contact-title {
+          font-size: 26px;
+        }
+
+        .contact-card,
+        .contact-form-wrap {
+          padding: 26px 22px;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+    }
   </style>
 </head>
-<body>
+<body class="loading">
 
-  <!-- HEADER -->
+  <div id="preloader">
+    <svg class="loader-svg" viewBox="0 0 50 50">
+      <circle cx="25" cy="25" r="20" fill="none" stroke-miterlimit="10"/>
+    </svg>
+  </div>
+
   <header class="header" id="mainHeader">
     <div class="logo">
       <span class="logo-gonex">GoNex</span><span class="logo-innovations"> Innovations</span>
     </div>
-    <button class="nav-toggle" aria-label="Toggle navigation">
-      <span class="hamburger"></span>
-    </button>
-    <nav class="nav-links">
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
     <nav class="nav-links">
       <a href="#home" class="active">Home</a>
       <a href="#about">About</a>
@@ -1628,9 +1669,7 @@
     </nav>
   </header>
 
-  <!-- HERO / HOME -->
   <section class="hero-section" id="home">
-    <!-- particles -->
     <div class="particle"></div>
     <div class="particle"></div>
     <div class="particle"></div>
@@ -1650,7 +1689,6 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section class="about-section" id="about">
     <div class="about-layout">
       <article class="about-text">
@@ -1686,7 +1724,6 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
   <section class="services-section" id="services">
     <div class="services-header" id="servicesHeader">
       <div class="services-eyebrow">Services</div>
@@ -1697,7 +1734,6 @@
     </div>
 
     <div class="services-grid">
-      <!-- 1 -->
       <article class="service-card" style="--delay: 0.02s">
         <div class="service-icon-wrap">
           <span class="material-symbols-outlined">terminal</span>
@@ -1706,10 +1742,9 @@
         <p class="service-text">
           End-to-end web applications with powerful backends and modern frontends.
         </p>
-        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
+        <a href="#contactFormWrap" class="service-cta">Apply Now</a>
       </article>
 
-      <!-- 2 -->
       <article class="service-card" style="--delay: 0.08s">
         <div class="service-icon-wrap">
           <span class="material-symbols-outlined">smartphone</span>
@@ -1718,10 +1753,9 @@
         <p class="service-text">
           Native &amp; cross-platform mobile apps with exceptional user experience.
         </p>
-        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
+        <a href="#contactFormWrap" class="service-cta">Apply Now</a>
       </article>
 
-      <!-- 3 -->
       <article class="service-card" style="--delay: 0.14s">
         <div class="service-icon-wrap">
           <span class="material-symbols-outlined">language</span>
@@ -1730,10 +1764,9 @@
         <p class="service-text">
           Fast, accessible, and SEO-friendly websites optimized for conversions.
         </p>
-        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
+        <a href="#contactFormWrap" class="service-cta">Apply Now</a>
       </article>
 
-      <!-- 4 -->
       <article class="service-card" style="--delay: 0.20s">
         <div class="service-icon-wrap">
           <span class="material-symbols-outlined">layers</span>
@@ -1742,10 +1775,9 @@
         <p class="service-text">
           Scalable MERN applications and REST/GraphQL APIs built with modern best practices.
         </p>
-        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
+        <a href="#contactFormWrap" class="service-cta">Apply Now</a>
       </article>
 
-      <!-- 5 -->
       <article class="service-card" style="--delay: 0.26s">
         <div class="service-icon-wrap">
           <span class="material-symbols-outlined">dashboard_customize</span>
@@ -1754,10 +1786,9 @@
         <p class="service-text">
           User-centered design &amp; interactive prototypes that delight users.
         </p>
-        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
+        <a href="#contactFormWrap" class="service-cta">Apply Now</a>
       </article>
 
-      <!-- 6 -->
       <article class="service-card" style="--delay: 0.32s">
         <div class="service-icon-wrap">
           <span class="material-symbols-outlined">brush</span>
@@ -1766,10 +1797,9 @@
         <p class="service-text">
           Compelling branding and marketing visuals that drive engagement.
         </p>
-        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
+        <a href="#contactFormWrap" class="service-cta">Apply Now</a>
       </article>
 
-      <!-- 7 -->
       <article class="service-card" style="--delay: 0.38s">
         <div class="service-icon-wrap">
           <span class="material-symbols-outlined">campaign</span>
@@ -1778,10 +1808,9 @@
         <p class="service-text">
           Performance-driven strategies and analytics-powered growth campaigns.
         </p>
-        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
+        <a href="#contactFormWrap" class="service-cta">Apply Now</a>
       </article>
 
-      <!-- 8 -->
       <article class="service-card" style="--delay: 0.44s">
         <div class="service-icon-wrap">
           <span class="material-symbols-outlined">school</span>
@@ -1790,17 +1819,15 @@
         <p class="service-text">
           Hands-on, practical courses designed to upskill students &amp; professionals.
         </p>
-        <button class="service-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
+        <a href="#contactFormWrap" class="service-cta">Apply Now</a>
       </article>
     </div>
   </section>
 
-  <!-- DARK STRIP -->
   <section class="brand-strip" id="brandStrip">
     GoNex Innovations
   </section>
 
-  <!-- TESTIMONIAL / FOUNDER -->
   <section class="testimonial-section">
     <div class="testimonial-bokeh b1"></div>
     <div class="testimonial-bokeh b2"></div>
@@ -1816,9 +1843,7 @@
     </div>
   </section>
 
-  <!-- CONTACT (with Web3Forms) -->
   <section class="contact-section" id="contact">
-    <!-- HEADER -->
     <header class="contact-header animate-header" id="contactHeader">
       <div class="contact-eyebrow">Contact</div>
       <h1 class="contact-title">Contact Us</h1>
@@ -1828,13 +1853,11 @@
       </p>
     </header>
 
-    <!-- LAYOUT -->
     <div class="contact-layout">
-      <!-- LEFT: INFO CARD -->
       <aside class="contact-card" id="contactInfo">
         <h3>Contact Information</h3>
 
-        <div class="info-item">
+        <div class="info-item" onclick="window.location.href='https://maps.app.goo.gl/YourLocationLink'">
           <div class="info-icon">
             <span class="material-symbols-outlined contact-icon">location_on</span>
           </div>
@@ -1844,7 +1867,7 @@
           </div>
         </div>
 
-        <div class="info-item">
+        <div class="info-item" onclick="window.location.href='mailto:gonexinnovationsit@gmail.com'">
           <div class="info-icon">
             <span class="material-symbols-outlined contact-icon">mail</span>
           </div>
@@ -1854,7 +1877,7 @@
           </div>
         </div>
 
-        <div class="info-item">
+        <div class="info-item" onclick="window.location.href='tel:+919363375306'">
           <div class="info-icon">
             <span class="material-symbols-outlined contact-icon">call</span>
           </div>
@@ -1871,18 +1894,15 @@
         </div>
       </aside>
 
-      <!-- RIGHT: FORM (WEB3FORMS ACTION) -->
       <section class="contact-form-wrap" id="contactFormWrap">
         <h3 class="contact-form-title">Send us a Message</h3>
 
-        <!-- Web3Forms integrated form -->
         <form
           id="contactForm"
           class="contact-form"
           action="https://api.web3forms.com/submit"
           method="POST"
         >
-          <!-- REQUIRED Web3Forms ACCESS KEY -->
           <input type="hidden" name="access_key" value="c4150a6f-dae2-4e21-8b7d-f15d7cee7496" />
 
           <div class="form-row">
@@ -1909,7 +1929,6 @@
             </button>
           </div>
 
-          <!-- Optional local success text (will only show if you add JS logic later) -->
           <div class="form-success" id="formSuccess">
             Thank you! Your message has been recorded.
           </div>
@@ -1918,11 +1937,9 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer id="footer">
     <div class="footer-top" id="footerTop">
       <div class="footer-top-inner">
-        <!-- Brand / contact -->
         <div class="footer-section">
           <div class="footer-title">
             <span class="brand-main">GoNex</span><span class="brand-sub"> Innovations</span>
@@ -1945,7 +1962,6 @@
           </p>
         </div>
 
-        <!-- Services column -->
         <div class="footer-section">
           <h4>Services</h4>
           <ul class="footer-list">
@@ -1957,7 +1973,6 @@
           </ul>
         </div>
 
-        <!-- Quick links column -->
         <div class="footer-section">
           <h4>Quick Links</h4>
           <ul class="footer-list">
@@ -1970,11 +1985,10 @@
       </div>
     </div>
 
-    <!-- Bottom strip -->
     <div class="footer-bottom">
       <div class="footer-bottom-inner">
         <div class="footer-copy">
-          2025 <strong>GoNex Innovations</strong>. All rights reserved.
+          © 2025 <strong>GoNex Innovations</strong>. All rights reserved.
         </div>
         <div class="footer-designer">
           Designed by <span>GoNex Innovations</span>
@@ -1983,21 +1997,86 @@
     </div>
   </footer>
 
-  <!-- GLOBAL SCROLL TO TOP BUTTON -->
   <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
 
   <script>
-    // HEADER SCROLL SHADOW
+    // --- NEW: PRELOADER LOGIC ---
+    const preloader = document.getElementById('preloader');
+    const body = document.body;
+    
+    // Function to hide the preloader and show content
+    function hidePreloader() {
+        if (preloader) {
+            preloader.classList.add('hidden');
+            body.classList.remove('loading');
+            body.classList.add('loaded');
+        }
+    }
+
+    // Hide preloader after everything (including images) is loaded
+    window.addEventListener('load', () => {
+        // Wait a small delay to ensure animation is seen
+        setTimeout(hidePreloader, 700); 
+    });
+    
+    // Fallback: If 'load' event doesn't fire (e.g., cached or very fast), hide after a timeout
+    setTimeout(() => {
+        if (body.classList.contains('loading')) {
+            hidePreloader();
+        }
+    }, 4000); // 4-second max load time fallback
+
+    // --- HEADER SCROLL SHADOW ---
     const header = document.getElementById('mainHeader');
     window.addEventListener('scroll', () => {
       if (!header) return;
       header.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // NAV ACTIVE STATE ON SCROLL
+    // --- SMOOTH SCROLL FOR ALL ANCHOR LINKS (INCLUDING APPLY NOW) ---
     const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-    const sections = Array.from(navLinks).map(link => document.querySelector(link.getAttribute('href')));
+    const sections = Array.from(navLinks)
+        .map(link => document.querySelector(link.getAttribute('href')))
+        .filter(section => section !== null);
 
+    function smoothScroll(targetId) {
+        const target = document.querySelector(targetId);
+        if (target) {
+            const headerHeight = header ? header.offsetHeight : 0; 
+            const offsetTop = target.offsetTop - headerHeight - 20;
+
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId.startsWith('#') && targetId.length > 1) {
+                e.preventDefault();
+                smoothScroll(targetId);
+                
+                // Highlight form on 'Apply Now' click
+                if (this.classList.contains('service-cta')) {
+                     const formWrap = document.querySelector(targetId);
+                     if(formWrap) {
+                        formWrap.style.boxShadow = '0 0 0 5px rgba(34,197,94,0.42)';
+                        formWrap.style.borderColor = 'var(--accent)';
+                        setTimeout(() => {
+                            formWrap.style.boxShadow = '0 22px 50px rgba(0,0,0,0.06)';
+                            formWrap.style.borderColor = 'var(--border-soft)';
+                        }, 1200);
+                     }
+                }
+            }
+        });
+    });
+
+
+    // --- NAV ACTIVE STATE ON SCROLL ---
     function updateActiveNav() {
       let currentId = 'home';
       const offset = 120;
@@ -2015,30 +2094,39 @@
     window.addEventListener('scroll', updateActiveNav);
     window.addEventListener('load', updateActiveNav);
 
-    // ABOUT ENTRY ANIMATIONS
+    // --- SECTION ENTRY ANIMATIONS (Using Intersection Observer for all sections for smoothness) ---
+
+    function createObserver(targetId, addClass) {
+        const target = document.getElementById(targetId);
+        if (target) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            target.classList.add(addClass);
+                            observer.unobserve(target);
+                        }
+                    });
+                },
+                { threshold: 0.15 }
+            );
+            observer.observe(target);
+        }
+    }
+
+    // ABOUT TEXT/MEDIA
     window.addEventListener('load', function () {
-      const text = document.querySelector('.about-text');
-      const media = document.querySelector('.about-media');
-      if (text) text.classList.add('animate-in-left');
-      if (media) media.classList.add('animate-in-right');
+        const text = document.querySelector('.about-text');
+        const media = document.querySelector('.about-media');
+        // Ensure they animate only after the loading screen is gone
+        setTimeout(() => {
+            if (text) text.classList.add('animate-in-left');
+            if (media) media.classList.add('animate-in-right');
+        }, 800);
     });
 
     // SERVICES HEADER REVEAL
-    const servicesHeader = document.getElementById('servicesHeader');
-    if (servicesHeader) {
-      const servicesHeaderObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              servicesHeader.classList.add('section-visible');
-              servicesHeaderObserver.unobserve(servicesHeader);
-            }
-          });
-        },
-        { threshold: 0.25 }
-      );
-      servicesHeaderObserver.observe(servicesHeader);
-    }
+    createObserver('servicesHeader', 'section-visible');
 
     // SERVICES - ANIMATE CARDS ON SCROLL
     const cards = document.querySelectorAll('.service-card');
@@ -2058,21 +2146,7 @@
     }
 
     // BRAND STRIP REVEAL
-    const brandStrip = document.getElementById('brandStrip');
-    if (brandStrip) {
-      const stripObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              brandStrip.classList.add('strip-visible');
-              stripObserver.unobserve(brandStrip);
-            }
-          });
-        },
-        { threshold: 0.25 }
-      );
-      stripObserver.observe(brandStrip);
-    }
+    createObserver('brandStrip', 'strip-visible');
 
     // FOUNDER SECTION ANIMATION
     const founder = document.querySelector('.founder-animate');
@@ -2093,72 +2167,15 @@
       founderObserver.observe(founder);
     }
 
-    // CONTACT HEADER ANIMATION ON LOAD
-    window.addEventListener('load', function () {
-      const headerEl = document.getElementById('contactHeader');
-      if (headerEl) {
-        headerEl.classList.add('ready');
-      }
-    });
+    // CONTACT HEADER ANIMATION
+    createObserver('contactHeader', 'ready');
 
     // CONTACT LEFT/RIGHT SECTION OBSERVER
-    const contactInfo = document.getElementById('contactInfo');
-    const contactFormWrap = document.getElementById('contactFormWrap');
-
-    const contactObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-            contactObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (contactInfo) contactObserver.observe(contactInfo);
-    if (contactFormWrap) contactObserver.observe(contactFormWrap);
-
-    // OPTIONAL LOCAL SUCCESS MESSAGE (only if you want to prevent redirect and handle via JS)
-    // Currently commented out so Web3Forms works with normal submit & redirect.
-    /*
-    const form = document.getElementById('contactForm');
-    const successMsg = document.getElementById('formSuccess');
-
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const data = new FormData(form);
-        fetch(form.action, {
-          method: 'POST',
-          body: data
-        }).then(() => {
-          if (successMsg) {
-            successMsg.classList.add('show');
-          }
-          form.reset();
-        });
-      });
-    }
-    */
+    createObserver('contactInfo', 'animate-in');
+    createObserver('contactFormWrap', 'animate-in');
 
     // FOOTER REVEAL ANIMATION
-    const footerTop = document.getElementById('footerTop');
-    if (footerTop) {
-      const footerObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              footerTop.classList.add('animate-in');
-              footerObserver.unobserve(footerTop);
-            }
-          });
-        },
-        { threshold: 0.15 }
-      );
-      footerObserver.observe(footerTop);
-    }
+    createObserver('footerTop', 'animate-in');
 
     // SCROLL TO TOP BUTTON
     const scrollBtn = document.getElementById('scrollTopBtn');
@@ -2178,36 +2195,5 @@
     }
   </script>
 
-  <script>
-    // Mobile menu toggle
-    document.addEventListener('DOMContentLoaded', function() {
-      const navToggle = document.querySelector('.nav-toggle');
-      const navLinks = document.querySelector('.nav-links');
-      
-      if (navToggle && navLinks) {
-        navToggle.addEventListener('click', function(e) {
-          e.stopPropagation();
-          navLinks.classList.toggle('active');
-          this.classList.toggle('active');
-        });
-      }
-      
-      // Close menu when clicking outside
-      document.addEventListener('click', function(e) {
-        if (!e.target.closest('.nav-links') && !e.target.closest('.nav-toggle')) {
-          if (navLinks) navLinks.classList.remove('active');
-          if (navToggle) navToggle.classList.remove('active');
-        }
-      });
-
-      // Close menu when clicking a link
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-          if (navLinks) navLinks.classList.remove('active');
-          if (navToggle) navToggle.classList.remove('active');
-        });
-      });
-    });
-  </script>
 </body>
 </html>
